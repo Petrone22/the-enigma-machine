@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: black;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.plugboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40%;
+  gap: 2rem;
+}
+.plug-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.plug {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  border: 2px solid #989898;
+  margin: 17px 18px;
+  cursor: pointer;
+  color: transparent;
+  text-shadow: 0px -30px #aaaaaa, -2px -30px #000000;
+  text-align: center;
+}
+
+.plug:hover {
+  text-shadow: 0px -30px #e1e1e1, -2px -30px #000000;
+
+  border: 2px solid #e1e1e1;
+}
