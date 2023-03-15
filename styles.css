@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: black;
+  background: rgb(41, 40, 40);
   color: white;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -42,4 +42,75 @@
   text-shadow: 0px -30px #e1e1e1, -2px -30px #000000;
 
   border: 2px solid #e1e1e1;
+}
+
+.bulbs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40%;
+  gap: 2rem;
+}
+.bulb-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+.bulb {
+  height: 35px;
+  width: 35px;
+  padding: 3px;
+  color: #d0d0d0;
+  border: 2px solid white;
+  border-radius: 50%;
+  margin: 17px 18px;
+  text-align: center;
+  font-size: 17px;
+}
+.active {
+  background: rgb(247, 217, 50);
+  border: 2px solid rgb(247, 217, 50);
+  color: black;
+  box-shadow: 0 0 10px 7px gold;
+}
+.rotors {
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.rotor {
+  width: 40px;
+  height: 100%;
+  margin-top: 10px;
+  display: grid;
+  place-items: center;
+  border: 3px solid black;
+  border-radius: 2px;
+  font-size: 20px;
+  background: white;
+  color: black;
+}
+
+.rotorletter {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.rotorlettercenter {
+  border-bottom: 4px solid black;
+  border-top: 4px solid black;
+  height: 150%;
+}
+.rotorlettertop {
+  padding-bottom: 8px;
+}
+.rotorletterbottom {
+  padding-top: 8px;
 }
