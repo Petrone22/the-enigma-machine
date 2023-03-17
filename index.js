@@ -69,17 +69,17 @@ let entries = Object.entries(plugs);
 // console.log(entries[0][1].pluggedFrom);
 
 //  this event listener listens to keyPresses on the keyboard and converts a key if its connected to another key
-document.addEventListener("keydown", (e) => {
-  let input = e.key.toUpperCase();
-  for (let i = 0; i < entries.length; i++) {
-    if (entries[i][1].pluggedFrom == input && entries[i][1].pluggedTo) {
-      console.log(
-        `your original letter is ${input}`,
-        `and your new letter is ${entries[i][1].pluggedTo}`
-      );
-    }
-  }
-});
+// document.addEventListener("keydown", (e) => {
+//   let input = e.key.toUpperCase();
+//   for (let i = 0; i < entries.length; i++) {
+//     if (entries[i][1].pluggedFrom == input && entries[i][1].pluggedTo) {
+//       console.log(
+//         `your original letter is ${input}`,
+//         `and your new letter after plugboard is ${entries[i][1].pluggedTo}`
+//       );
+//     }
+//   }
+// });
 
 changeBG = (letter, color) => {
   let button = document.getElementById(`${letter}`);
@@ -103,7 +103,19 @@ plug = (letter) => {
 
       break;
     } else if (entries[i][1].pluggedFrom && entries[i][1].pluggedTo) {
-      continue;
+      if (
+        entries[i][1].pluggedFrom === letter ||
+        entries[i][1].pluggedTo === letter
+      ) {
+        changeBG(entries[i][1].pluggedFrom, "transparent");
+        changeBG(entries[i][1].pluggedTo, "transparent");
+        entries[i][1].pluggedFrom = "";
+        entries[i][1].pluggedTo = "";
+        console.log(entries[i][1]);
+        break;
+      } else {
+        continue;
+      }
     }
   }
 };
@@ -160,12 +172,12 @@ class Rotors {
   getIndex(letter) {
     console.log(
       "letter Submitted to Rotor:",
-      letter.toUpperCase(),
+      letter.toLowerCase(),
       "its alphabetical position is:",
-      alphabet.indexOf(letter)
+      alphabet.indexOf(letter.toLowerCase())
     );
     return {
-      index: alphabet.indexOf(letter),
+      index: alphabet.indexOf(letter.toLowerCase()),
     };
   }
   unshift() {
@@ -301,26 +313,42 @@ function submitletter0(letter) {
       .newLetter,
   };
 }
-async function submitletter1(letter) {
+function submitletter1(letter) {
   // rotor1.convertLetter(rotor1.getIndex(`${letter}`).index);
   return {
-    newLetter: rotor1.convertLetter(rotor1.getIndex(`${letter}`).index),
+    newLetter: rotor1.convertLetter(rotor1.getIndex(`${letter}`).index)
+      .newLetter,
   };
 }
 function submitletter2(letter) {
   // rotor2.convertLetter(rotor1.getIndex(`${letter}`).index);
   return {
-    newLetter: rotor2.convertLetter(rotor2.getIndex(`${letter}`).index),
+    newLetter: rotor2.convertLetter(rotor2.getIndex(`${letter}`).index)
+      .newLetter,
   };
 }
 function submitletterReflector(letter) {
   // reflector.convertLetter(rotor1.getIndex(`${letter}`).index);
   return {
-    newLetter: reflector.convertLetter(reflector.getIndex(`${letter}`).index),
+    newLetter: reflector.convertLetter(reflector.getIndex(`${letter}`).index)
+      .newletter,
   };
 }
-async function submitToEnigma(letter) {
-  console.log("sex");
-  console.log("sex2");
-  await submitletter0(letter).newLetter;
+function submitToRotors(letter) {
+  console.log(
+    submitletter0(
+      submitletter1(
+        submitletter2(
+          submitletterReflector(
+            submitletter2(
+              submitletter1(submitletter0(letter.toLowerCase()).newLetter)
+                .newLetter
+            ).newLetter
+          ).newLetter
+        ).newLetter
+      ).newLetter
+    ).newLetter
+  );
 }
+
+// function submitToEnigma(letter) {}
