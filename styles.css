@@ -36,6 +36,9 @@
   color: transparent;
   text-shadow: 0px -30px #aaaaaa, -2px -30px #000000;
   text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .plug:hover {
@@ -68,6 +71,10 @@
   margin: 17px 18px;
   text-align: center;
   font-size: 17px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  transition: 0.6s ease;
 }
 .active {
   background: rgb(247, 217, 50);
@@ -102,6 +109,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .rotorlettercenter {
   border-bottom: 4px solid black;
@@ -110,7 +121,9 @@
 }
 .rotorlettertop {
   padding-bottom: 8px;
+  cursor: pointer;
 }
 .rotorletterbottom {
   padding-top: 8px;
+  cursor: pointer;
 }

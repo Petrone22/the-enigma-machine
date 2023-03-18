@@ -66,20 +66,17 @@ let plugs = {
   },
 };
 let entries = Object.entries(plugs);
-// console.log(entries[0][1].pluggedFrom);
+let rotor1top = document.getElementById("rotor0-letter-top");
+let rotor1middle = document.getElementById("rotor0-letter-middle");
+let rotor1bottom = document.getElementById("rotor0-letter-bottom");
+let rotor2top = document.getElementById("rotor1-letter-top");
+let rotor2middle = document.getElementById("rotor1-letter-middle");
+let rotor2bottom = document.getElementById("rotor1-letter-bottom");
+let rotor3top = document.getElementById("rotor2-letter-top");
+let rotor3middle = document.getElementById("rotor2-letter-middle");
+let rotor3bottom = document.getElementById("rotor2-letter-bottom");
 
 //  this event listener listens to keyPresses on the keyboard and converts a key if its connected to another key
-// document.addEventListener("keydown", (e) => {
-//   let input = e.key.toUpperCase();
-//   for (let i = 0; i < entries.length; i++) {
-//     if (entries[i][1].pluggedFrom == input && entries[i][1].pluggedTo) {
-//       console.log(
-//         `your original letter is ${input}`,
-//         `and your new letter after plugboard is ${entries[i][1].pluggedTo}`
-//       );
-//     }
-//   }
-// });
 
 changeBG = (letter, color) => {
   let button = document.getElementById(`${letter}`);
@@ -170,23 +167,26 @@ class Rotors {
   }
 
   getIndex(letter) {
-    console.log(
-      "letter Submitted to Rotor:",
-      letter.toLowerCase(),
-      "its alphabetical position is:",
-      alphabet.indexOf(letter.toLowerCase())
-    );
+    // console.log(
+    //   "letter Submitted to Rotor:",
+    //   letter.toLowerCase(),
+    //   "its alphabetical position is:",
+    //   alphabet.indexOf(letter.toLowerCase())
+    // );
     return {
       index: alphabet.indexOf(letter.toLowerCase()),
     };
   }
+  shift() {
+    this.arr.push(this.arr.shift());
+  }
   unshift() {
     this.arr.unshift(`${this.arr.pop()}`);
-    console.log("enigma rotor has unshifted, new array:", this.arr);
+    // console.log("enigma rotor has unshifted, new array:", this.arr);
   }
   convertLetter(position) {
-    console.log("letter converted to:", this.arr[position]);
-    this.unshift();
+    // console.log("letter converted to:", this.arr[position]);
+
     return {
       newLetter: this.arr[position + 1],
     };
@@ -221,6 +221,9 @@ let rotor0 = new Rotors([
   "C",
   "J",
 ]);
+rotor1top.innerText = rotor0.arr[1];
+rotor1middle.innerText = rotor0.arr[0];
+rotor1bottom.innerText = rotor0.arr[25];
 let rotor1 = new Rotors([
   "A",
   "J",
@@ -249,6 +252,9 @@ let rotor1 = new Rotors([
   "O",
   "E",
 ]);
+rotor2top.innerText = rotor1.arr[1];
+rotor2middle.innerText = rotor1.arr[0];
+rotor2bottom.innerText = rotor1.arr[25];
 let rotor2 = new Rotors([
   "B",
   "D",
@@ -277,6 +283,9 @@ let rotor2 = new Rotors([
   "Q",
   "O",
 ]);
+rotor3top.innerText = rotor2.arr[1];
+rotor3middle.innerText = rotor2.arr[0];
+rotor3bottom.innerText = rotor2.arr[25];
 let reflector = new Rotors([
   "E",
   "J",
@@ -306,22 +315,82 @@ let reflector = new Rotors([
   "D",
 ]);
 
-function submitletter0(letter) {
+rotor1top.addEventListener("click", () => {
+  rotor0.shift();
+  rotor1top.innerText = rotor0.arr[1];
+  rotor1middle.innerText = rotor0.arr[0];
+  rotor1bottom.innerText = rotor0.arr[25];
+});
+rotor2top.addEventListener("click", () => {
+  rotor1.shift();
+  rotor2top.innerText = rotor1.arr[1];
+  rotor2middle.innerText = rotor1.arr[0];
+  rotor2bottom.innerText = rotor1.arr[25];
+});
+rotor3top.addEventListener("click", () => {
+  rotor2.shift();
+  rotor3top.innerText = rotor2.arr[1];
+  rotor3middle.innerText = rotor2.arr[0];
+  rotor3bottom.innerText = rotor2.arr[25];
+});
+rotor1bottom.addEventListener("click", () => {
+  rotor0.unshift();
+  rotor1top.innerText = rotor0.arr[1];
+  rotor1middle.innerText = rotor0.arr[0];
+  rotor1bottom.innerText = rotor0.arr[25];
+});
+rotor2bottom.addEventListener("click", () => {
+  rotor1.unshift();
+  rotor2top.innerText = rotor1.arr[1];
+  rotor2middle.innerText = rotor1.arr[0];
+  rotor2bottom.innerText = rotor1.arr[25];
+});
+rotor3bottom.addEventListener("click", () => {
+  rotor2.unshift();
+  rotor3top.innerText = rotor2.arr[1];
+  rotor3middle.innerText = rotor2.arr[0];
+  rotor3bottom.innerText = rotor2.arr[25];
+});
+
+function submitletter0(letter, shift) {
   // rotor0.convertLetter(rotor1.getIndex(`${letter}`).index);
+
+  rotor1top.innerText = rotor0.arr[1];
+  rotor1middle.innerText = rotor0.arr[0];
+  rotor1bottom.innerText = rotor0.arr[25];
+  // console.log("ROTOR0:", rotor0.arr);
+  if (shift) {
+    rotor0.unshift();
+  }
   return {
     newLetter: rotor0.convertLetter(rotor0.getIndex(`${letter}`).index)
       .newLetter,
   };
 }
-function submitletter1(letter) {
+function submitletter1(letter, shift) {
   // rotor1.convertLetter(rotor1.getIndex(`${letter}`).index);
+
+  rotor2top.innerText = rotor1.arr[1];
+  rotor2middle.innerText = rotor1.arr[0];
+  rotor2bottom.innerText = rotor1.arr[25];
+  // console.log("ROTOR1:", rotor1.arr);
+  if (shift && rotor0.arr.indexOf("E") === 25) {
+    rotor1.unshift();
+  }
   return {
     newLetter: rotor1.convertLetter(rotor1.getIndex(`${letter}`).index)
       .newLetter,
   };
 }
-function submitletter2(letter) {
+function submitletter2(letter, shift) {
   // rotor2.convertLetter(rotor1.getIndex(`${letter}`).index);
+  rotor3top.innerText = rotor2.arr[1];
+  rotor3middle.innerText = rotor2.arr[0];
+  rotor3bottom.innerText = rotor2.arr[25];
+  // console.log("ROTOR2:", rotor2.arr);
+  if (shift && rotor1.arr.indexOf("A") === 25) {
+    rotor2.unshift();
+  }
   return {
     newLetter: rotor2.convertLetter(rotor2.getIndex(`${letter}`).index)
       .newLetter,
@@ -335,20 +404,48 @@ function submitletterReflector(letter) {
   };
 }
 function submitToRotors(letter) {
-  console.log(
-    submitletter0(
+  return {
+    finalLetter: submitletter0(
       submitletter1(
         submitletter2(
           submitletterReflector(
             submitletter2(
-              submitletter1(submitletter0(letter.toLowerCase()).newLetter)
-                .newLetter
+              submitletter1(
+                submitletter0(letter.toLowerCase(), "shift").newLetter,
+                "shift"
+              ).newLetter,
+              "shift"
             ).newLetter
           ).newLetter
         ).newLetter
       ).newLetter
-    ).newLetter
-  );
+    ).newLetter,
+  };
 }
 
-// function submitToEnigma(letter) {}
+//  now we need to get the id for the bulbs to add class "active"
+// we also need to get the id for rotor buttons to change rotor positions
+
+makeActive = (letter) => {
+  let button = document.getElementById(`${letter}`);
+  button.classList.add("active");
+  setTimeout(() => {
+    button.classList.remove("active");
+  }, 500);
+};
+document.addEventListener("keydown", (e) => {
+  let input = e.key.toUpperCase();
+  for (let i = 0; i < entries.length; i++) {
+    if (entries[i][1].pluggedFrom == input && entries[i][1].pluggedTo) {
+      // console.log(
+      //   `your original letter is ${input}`,
+      //   `and your new letter after plugboard is ${entries[i][1].pluggedTo}`
+      // );
+      submitToRotors(entries[i][1].pluggedTo);
+      break;
+    } else {
+      makeActive(submitToRotors(input).finalLetter.toLowerCase());
+      break;
+    }
+  }
+});
