@@ -75,7 +75,10 @@ let rotor2bottom = document.getElementById("rotor1-letter-bottom");
 let rotor3top = document.getElementById("rotor2-letter-top");
 let rotor3middle = document.getElementById("rotor2-letter-middle");
 let rotor3bottom = document.getElementById("rotor2-letter-bottom");
-
+let page = document.getElementById("page");
+remove = () => {
+  page.style.display = "none";
+};
 //  this event listener listens to keyPresses on the keyboard and converts a key if its connected to another key
 
 changeBG = (letter, color) => {

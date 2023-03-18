@@ -127,3 +127,57 @@
   padding-top: 8px;
   cursor: pointer;
 }
+.page {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 30%;
+  background-color: #f8f5de;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 208, 0, 0.304),
+    rgba(200, 160, 0, 0.1) 11%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(164, 132, 2, 0.1) 65%
+  );
+  box-shadow: inset 0 0 75px rgba(255, 210, 0, 0.3),
+    inset 0 0 20px rgba(255, 210, 0, 0.4), inset 0 0 30px rgba(220, 120, 0, 0.8);
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "AustralisProSwash-Italic";
+  width: 700px;
+  height: 500px;
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  /* padding: 5em 10em 10em 5em; */
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  padding-right: 5em;
+  padding-left: 5em;
+  text-align: center;
+}
+button {
+  margin-top: 2rem;
+  padding: 1rem;
+  font-size: 16px;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 208, 0, 0.304),
+    rgba(200, 160, 0, 0.1) 11%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(164, 132, 2, 0.1) 65%
+  );
+  box-shadow: inset 0 0 75px rgba(255, 210, 0, 0.3),
+    inset 0 0 20px rgba(255, 210, 0, 0.4), inset 0 0 30px rgba(220, 120, 0, 0.8);
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bolder;
+  text-align: center;
+}
+button:hover {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 240, 174, 0.947),
+    rgba(75, 38, 96, 0.129) 11%,
+    rgba(191, 190, 190, 0) 35%,
+    rgb(172, 154, 154) 65%
+  );
+}

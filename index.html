@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="icon" href="/typewriter.png" type="image/x-icon" />
+
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +11,25 @@
   </head>
   <body>
     <div class="main">
+      <div id="page" class="page">
+        <p>
+          Welcome to the enigma machine! as a quick guide to get you started,
+          the enigma machine works as follows, if you press a button on your
+          keyboard you'll see that a different "bulb" lights up on your screen.
+          and that's because the enigma machine is an encoding algorithm. the
+          way it works is it takes any letter that you press on the keyboard and
+          checks if its connected to any other letter first, via the plugboard
+          (at the bottom), afterwards the letter travels to "the rotors", there
+          are 3 of them. and in each one the letter you had previously pressed
+          enters then gets converted to a new letter based on the rotor setting
+          (it's rotation. which you can change by clicking the top or bottom
+          letter of each rotor on top of the enigma machine) and after 3
+          conversions, the letter gets converted and re-enters the rotors 3 more
+          times to ensure maximum security!
+        </p>
+        <button onclick="remove()">Try It Out!</button>
+      </div>
+
       <section class="rotors">
         <div class="rotor">
           <div id="rotor0-letter-top" class="rotorlettertop rotorletter">B</div>
